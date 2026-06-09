@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Upload Document</title>
+
+    <link rel="stylesheet" href="css/upload.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 class="page-title">
+        Upload Study Material
+    </h1>
+
+    <div class="upload-card">
+
+        <div
+            class="drop-zone"
+            onclick="document.getElementById('pdfFile').click()">
+
+            <h2>📄 Upload PDF</h2>
+
+            <p>
+                Click to select your study material
+            </p>
+
+            <input
+                type="file"
+                id="pdfFile"
+                accept=".pdf"
+                class="file-input">
+
+        </div>
+
+        <button
+            type="button"
+            class="upload-btn"
+            onclick="uploadPDF()">
+
+            Upload Document
+
+        </button>
+
+        <div
+            class="progress-container"
+            id="progressContainer"
+            style="display:none;">
+
+            <p id="uploadStatus">
+                Uploading...
+            </p>
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="progressFill">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div
+        class="preview-card"
+        id="previewCard"
+        style="display:none;">
+
+        <h2>
+            Extracted Text Preview
+        </h2>
+
+        <div
+            class="preview-text"
+            id="previewText">
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/upload.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>InsightDoc AI Dashboard</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <div class="logo">
+            Insight<span>Doc</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#">🏠 Dashboard</a>
+
+            <a href="upload.html">📄 Upload Document</a>
+
+            <a href="flashcards.html">🧠 Flashcards</a>
+
+            <a href="quiz.html">❓ Quiz</a>
+
+            <a href="mindmap.html">🌳 Mind Map</a>
+
+            <a href="chat.html">🤖 AI Chat</a>
+
+            <a href="analytics.html">📊 Analytics</a>
+
+            <a href="history.html">🕒 History</a>
+
+        </div>
+
+        <button
+            class="logout-btn"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+    <!-- Main -->
+
+    <div class="main">
+
+        <!-- Header -->
+
+        <div class="header">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    placeholder="Search documents...">
+
+            </div>
+
+            <div class="profile">
+
+                <div
+                    class="avatar"
+                    id="avatar">
+
+                </div>
+
+                <div id="username"></div>
+
+            </div>
+
+        </div>
+
+        <!-- Analytics Cards -->
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Documents Studied</h3>
+
+                <p>12</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Flashcards</h3>
+
+                <p>248</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Quiz Score</h3>
+
+                <p>92%</p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Study Hours</h3>
+
+                <p>48h</p>
+
+            </div>
+
+        </div>
+
+        <!-- Quick Tools -->
+
+        <h2 class="section-title">
+            AI Learning Tools
+        </h2>
+
+        <div class="tools">
+
+            <div class="tool-card">
+                <h4>📄 Upload PDF</h4>
+                <p>Upload study material</p>
+            </div>
+
+            <div class="tool-card">
+                <h4>🧠 Flashcards</h4>
+                <p>Generate flashcards</p>
+            </div>
+
+            <div class="tool-card">
+                <h4>❓ Quiz Generator</h4>
+                <p>Create AI quizzes</p>
+            </div>
+
+            <div class="tool-card">
+                <h4>🌳 Mind Map</h4>
+                <p>Visual learning</p>
+            </div>
+
+            <div class="tool-card">
+                <h4>🤖 AI Chat</h4>
+                <p>Chat with document</p>
+            </div>
+
+            <div class="tool-card">
+                <h4>📊 Analytics</h4>
+                <p>Track progress</p>
+            </div>
+
+        </div>
+
+        <!-- Activity -->
+
+        <div class="activity">
+
+            <h2>
+                Recent Activity
+            </h2>
+
+            <div class="activity-item">
+                Uploaded DBMS Notes.pdf
+            </div>
+
+            <div class="activity-item">
+                Generated 25 Flashcards
+            </div>
+
+            <div class="activity-item">
+                Completed Quiz Score 92%
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    background:#0f172a;
+    color:white;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:30px;
+}
+
+.page-title{
+    font-size:32px;
+    margin-bottom:25px;
+}
+
+.upload-card{
+    background:#111827;
+    border-radius:20px;
+    padding:30px;
+}
+
+.drop-zone{
+    border:2px dashed #3b82f6;
+    border-radius:16px;
+    padding:50px;
+    text-align:center;
+    cursor:pointer;
+}
+
+.drop-zone:hover{
+    background:#1f2937;
+}
+
+.drop-zone h2{
+    margin-bottom:10px;
+}
+
+.file-input{
+    display:none;
+}
+
+.upload-btn{
+    margin-top:20px;
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#3b82f6;
+    color:white;
+    cursor:pointer;
+}
+
+.upload-btn:hover{
+    opacity:.9;
+}
+
+.progress-container{
+    margin-top:20px;
+    display:none;
+}
+
+.progress-bar{
+    height:20px;
+    background:#1f2937;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.progress-fill{
+    width:0%;
+    height:100%;
+    background:#3b82f6;
+}
+
+.preview-card{
+    margin-top:30px;
+    background:#111827;
+    border-radius:20px;
+    padding:25px;
+}
+
+.preview-text{
+    white-space:pre-wrap;
+    min-height:300px;
+    max-height:none;
+    overflow:visible;
+    color:#d1d5db;
+    border:2px solid red;
+    padding:15px;
+    margin-top:15px;
+}
