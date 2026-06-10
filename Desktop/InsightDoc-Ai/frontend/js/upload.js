@@ -1,3 +1,4 @@
+
 const API_URL =
 "http://127.0.0.1:5000/api/document/upload";
 
@@ -48,6 +49,11 @@ async function uploadPDF() {
         const data =
         await response.json();
 
+        console.log(
+            "FULL RESPONSE:",
+            data
+        );
+
         document.getElementById(
             "progressFill"
         ).style.width =
@@ -72,6 +78,8 @@ async function uploadPDF() {
 
         }, 1500);
 
+        
+
         if (data.success) {
 
             document.getElementById(
@@ -87,6 +95,11 @@ async function uploadPDF() {
             localStorage.setItem(
                 "flashcards",
                 data.flashcards
+            );
+
+            localStorage.setItem(
+                "quiz",
+                data.quiz
             );
 
 

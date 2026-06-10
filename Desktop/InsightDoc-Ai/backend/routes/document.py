@@ -14,6 +14,7 @@ import fitz
 
 from services.groq_service import generate_ai_summary
 from services.flashcard_service import generate_flashcards
+from services.quiz_service import generate_quiz
 
 from services.pdf_service import (
     extract_text_from_pdf
@@ -73,6 +74,10 @@ def upload_document():
         extracted_text
     )
 
+    quiz = generate_quiz(
+        extracted_text
+    )
+
     document = Document(
         filename=file.filename,
         extracted_text=extracted_text
@@ -86,5 +91,7 @@ def upload_document():
         "filename": file.filename,
         "summary": summary,
         "flashcards": flashcards,
+        "quiz": quiz,
         "text": extracted_text[:3000]
+
     })
