@@ -75,6 +75,17 @@ async function uploadPDF() {
         if (data.success) {
 
             document.getElementById(
+                "summaryCard"
+            ).style.display =
+            "block";
+
+            document.getElementById(
+                "summaryText"
+            ).innerText =
+            data.summary;
+
+
+            document.getElementById(
                 "previewCard"
             ).style.display =
             "block";
@@ -85,12 +96,12 @@ async function uploadPDF() {
             data.text;
 
             document.getElementById(
-                "previewCard"
+                "summaryCard"
             ).scrollIntoView({
                 behavior: "smooth"
             });
 
-        } else {
+        }else {
 
             alert(
                 data.message

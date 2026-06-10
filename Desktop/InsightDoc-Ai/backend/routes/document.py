@@ -10,6 +10,10 @@ from database import db
 
 from models.document import Document
 
+import fitz
+
+from services.summarizer import generate_summary
+
 from services.pdf_service import (
     extract_text_from_pdf
 )
@@ -60,6 +64,10 @@ def upload_document():
         file_path
     )
 
+    summary = generate_summary(
+        extracted_text
+    )
+
     document = Document(
         filename=file.filename,
         extracted_text=extracted_text
@@ -71,5 +79,6 @@ def upload_document():
     return jsonify({
         "success": True,
         "filename": file.filename,
+        "summary": summary,
         "text": extracted_text[:3000]
     })
