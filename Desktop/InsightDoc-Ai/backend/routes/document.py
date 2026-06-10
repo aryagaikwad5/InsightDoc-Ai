@@ -12,7 +12,7 @@ from models.document import Document
 
 import fitz
 
-from services.summarizer import generate_summary
+from services.groq_service import generate_ai_summary
 
 from services.pdf_service import (
     extract_text_from_pdf
@@ -64,7 +64,7 @@ def upload_document():
         file_path
     )
 
-    summary = generate_summary(
+    summary = generate_ai_summary(
         extracted_text
     )
 

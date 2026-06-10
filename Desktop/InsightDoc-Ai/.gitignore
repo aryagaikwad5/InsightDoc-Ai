@@ -8,5 +8,6 @@ backend/instance/
 insightdoc.db
 
 .env
+backend/.env
 
 .vscode/
