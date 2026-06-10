@@ -102,6 +102,11 @@ async function uploadPDF() {
                 data.quiz
             );
 
+            localStorage.setItem(
+                "documentText",
+                data.text
+            );
+
 
             document.getElementById(
                 "previewCard"

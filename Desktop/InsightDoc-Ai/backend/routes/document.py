@@ -15,6 +15,7 @@ import fitz
 from services.groq_service import generate_ai_summary
 from services.flashcard_service import generate_flashcards
 from services.quiz_service import generate_quiz
+from services.chat_service import ask_document
 
 from services.pdf_service import (
     extract_text_from_pdf
@@ -94,4 +95,37 @@ def upload_document():
         "quiz": quiz,
         "text": extracted_text[:3000]
 
+    })
+
+@document_bp.route(
+    "/chat",
+    methods=["POST"]
+)
+def chat_with_document():
+
+    data = request.json
+
+    question = data.get(
+        "question"
+    )
+
+    document_text = data.get(
+        "document_text"
+    )
+
+    if not question or not document_text:
+
+        return jsonify({
+            "success": False,
+            "message": "Missing data"
+        }), 400
+
+    answer = ask_document(
+        question,
+        document_text
+    )
+
+    return jsonify({
+        "success": True,
+        "answer": answer
     })
