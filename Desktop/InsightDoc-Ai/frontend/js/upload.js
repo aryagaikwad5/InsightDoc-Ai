@@ -84,6 +84,11 @@ async function uploadPDF() {
             ).innerText =
             data.summary;
 
+            localStorage.setItem(
+                "flashcards",
+                data.flashcards
+            );
+
 
             document.getElementById(
                 "previewCard"
