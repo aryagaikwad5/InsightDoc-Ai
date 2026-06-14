@@ -11,15 +11,17 @@ localStorage.getItem("quiz");
 if (rawQuiz) {
 
     const blocks =
-    rawQuiz.split("**Q");
+    rawQuiz.match(
+        /Q\d+\.[\s\S]*?(?=Q\d+\.|$)/g
+    ) || [];
 
     blocks.forEach(block => {
 
-        if (!block.trim()) return;
-
         const lines =
         block.split("\n")
-        .filter(line => line.trim());
+        .filter(
+            line => line.trim()
+        );
 
         const question =
         lines[0];
@@ -27,18 +29,18 @@ if (rawQuiz) {
         const options =
         lines.filter(
             line =>
-            line.startsWith("A)") ||
-            line.startsWith("B)") ||
-            line.startsWith("C)") ||
-            line.startsWith("D)")
+                line.startsWith("A)") ||
+                line.startsWith("B)") ||
+                line.startsWith("C)") ||
+                line.startsWith("D)")
         );
 
         const correct =
         lines.find(
             line =>
-            line.includes(
-                "Correct Answer:"
-            )
+                line.includes(
+                    "Correct Answer:"
+                )
         );
 
         questions.push({
@@ -67,7 +69,7 @@ function renderQuestion() {
             "questionCard"
         ).innerHTML =
         `Quiz Finished 🎉 <br><br>
-         Final Score: ${score}/${questions.length}`;
+        Final Score: ${score}/${questions.length}`;
 
         document.getElementById(
             "optionsContainer"
@@ -90,10 +92,9 @@ function renderQuestion() {
 
         html += `
         <button
-        onclick="selectAnswer(
-        '${option.replace(/'/g,"")}')">
+        onclick="selectAnswer('${option.replace(/'/g, "")}')">
 
-        ${option}
+            ${option}
 
         </button>
 

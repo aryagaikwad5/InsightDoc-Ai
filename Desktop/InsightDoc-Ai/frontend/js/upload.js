@@ -107,6 +107,55 @@ async function uploadPDF() {
                 data.text
             );
 
+            localStorage.setItem(
+                "filename",
+                data.filename
+            );
+
+            console.log("Saving history...");
+
+            let history = JSON.parse(
+                localStorage.getItem(
+                    "documentHistory"
+                )
+            ) || [];
+
+
+            history.unshift({
+
+                filename:
+                data.filename,
+
+                summary:
+                data.summary,
+
+                flashcards:
+                data.flashcards,
+
+                quiz:
+                data.quiz,
+
+                documentText:
+                data.text,
+
+                uploadedAt:
+                new Date()
+                .toLocaleString()
+
+            });
+
+            console.log(history);
+
+            localStorage.setItem(
+
+                "documentHistory",
+
+                JSON.stringify(
+                    history
+                )
+
+            );
+
 
             document.getElementById(
                 "previewCard"

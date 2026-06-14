@@ -3,9 +3,15 @@
 
 <head>
 
-    <title>InsightDoc AI Dashboard</title>
+    <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="css/dashboard.css">
+    <title>
+        InsightDoc Dashboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/dashboard.css">
 
 </head>
 
@@ -13,179 +19,72 @@
 
 <div class="container">
 
-    <!-- Sidebar -->
+    <h1>
+        📚 InsightDoc Dashboard
+    </h1>
 
-    <div class="sidebar">
+    <div class="card">
 
-        <div class="logo">
-            Insight<span>Doc</span>
-        </div>
+        <h2>
+            📄 Uploaded Document
+        </h2>
 
-        <div class="nav-links">
+        <p id="filename">
 
-            <a href="#">🏠 Dashboard</a>
+            Filename: -
 
-            <a href="upload.html">📄 Upload Document</a>
+        </p>
 
-            <a href="flashcards.html">🧠 Flashcards</a>
+        <p id="wordCount">
 
-            <a href="quiz.html">❓ Quiz</a>
+            Word Count: -
 
-            <a href="mindmap.html">🌳 Mind Map</a>
+        </p>
 
-            <a href="chat.html">🤖 AI Chat</a>
+    </div>
 
-            <a href="analytics.html">📊 Analytics</a>
+    <div class="card">
 
-            <a href="history.html">🕒 History</a>
+        <h2>
+            Quick Actions
+        </h2>
 
-        </div>
+        <button onclick="location.href='upload.html'">
+            Upload
+        </button>
 
-        <button
-            class="logout-btn"
-            onclick="logout()">
+        <button onclick="location.href='flashcards.html'">
+            Flashcards
+        </button>
 
-            Logout
+        <button onclick="location.href='quiz.html'">
+            Quiz
+        </button>
 
+        <button onclick="location.href='chat.html'">
+            Chat
         </button>
 
     </div>
 
-    <!-- Main -->
 
-    <div class="main">
+    <div class="card">
 
-        <!-- Header -->
-
-        <div class="header">
-
-            <div class="search-box">
-
-                <input
-                    type="text"
-                    placeholder="Search documents...">
-
-            </div>
-
-            <div class="profile">
-
-                <div
-                    class="avatar"
-                    id="avatar">
-
-                </div>
-
-                <div id="username"></div>
-
-            </div>
-
-        </div>
-
-        <!-- Analytics Cards -->
-
-        <div class="cards">
-
-            <div class="card">
-
-                <h3>Documents Studied</h3>
-
-                <p>12</p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Flashcards</h3>
-
-                <p>248</p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Quiz Score</h3>
-
-                <p>92%</p>
-
-            </div>
-
-            <div class="card">
-
-                <h3>Study Hours</h3>
-
-                <p>48h</p>
-
-            </div>
-
-        </div>
-
-        <!-- Quick Tools -->
-
-        <h2 class="section-title">
-            AI Learning Tools
+        <h2>
+            📚 Recent Documents
         </h2>
 
-        <div class="tools">
+        <div id="historyList">
 
-            <div class="tool-card">
-                <h4>📄 Upload PDF</h4>
-                <p>Upload study material</p>
-            </div>
-
-            <div class="tool-card">
-                <h4>🧠 Flashcards</h4>
-                <p>Generate flashcards</p>
-            </div>
-
-            <div class="tool-card">
-                <h4>❓ Quiz Generator</h4>
-                <p>Create AI quizzes</p>
-            </div>
-
-            <div class="tool-card">
-                <h4>🌳 Mind Map</h4>
-                <p>Visual learning</p>
-            </div>
-
-            <div class="tool-card">
-                <h4>🤖 AI Chat</h4>
-                <p>Chat with document</p>
-            </div>
-
-            <div class="tool-card">
-                <h4>📊 Analytics</h4>
-                <p>Track progress</p>
-            </div>
-
-        </div>
-
-        <!-- Activity -->
-
-        <div class="activity">
-
-            <h2>
-                Recent Activity
-            </h2>
-
-            <div class="activity-item">
-                Uploaded DBMS Notes.pdf
-            </div>
-
-            <div class="activity-item">
-                Generated 25 Flashcards
-            </div>
-
-            <div class="activity-item">
-                Completed Quiz Score 92%
-            </div>
+            No documents found.
 
         </div>
 
     </div>
-
 </div>
 
 <script src="js/dashboard.js"></script>
 
 </body>
+
 </html>
