@@ -23,6 +23,35 @@
 
         🤖 InsightDoc AI Chat
 
+        <div class="document-info">
+
+            📄 Studying:
+            <span id="documentName">
+                No document selected
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="prompt-chips">
+
+        <button onclick="usePrompt('Summarize this document simply.')">
+            📝 Summarize
+        </button>
+
+        <button onclick="usePrompt('What are the important exam questions?')">
+            🎯 Exam Questions
+        </button>
+
+        <button onclick="usePrompt('Explain this topic in simple language.')">
+            💡 Explain Simply
+        </button>
+
+        <button onclick="usePrompt('Give me key concepts from this document.')">
+            📌 Key Concepts
+        </button>
+
     </div>
 
     <div
@@ -37,6 +66,26 @@
 
     </div>
 
+    <div class="chat-actions">
+
+        <button
+            class="dashboard-btn"
+            onclick="window.location.href='dashboard.html'">
+
+            🏠 Dashboard
+
+        </button>
+
+        <button
+            class="clear-btn"
+            onclick="clearChat()">
+
+            🗑 Clear Chat
+
+        </button>
+
+    </div>
+
     <div class="chat-input-area">
 
         <input
@@ -45,6 +94,7 @@
             placeholder="Ask a question...">
 
         <button
+            id="sendBtn"
             onclick="sendMessage()">
 
             Send
@@ -55,7 +105,30 @@
 
 </div>
 
+<script>
+
+window.addEventListener(
+    "pageshow",
+    function(){
+
+        if(
+            !localStorage.getItem("user")
+        ){
+
+            window.location.replace(
+                "index.html"
+            );
+
+        }
+
+    }
+);
+
+</script>
+
 <script src="js/chat.js"></script>
+
+
 
 </body>
 

@@ -133,7 +133,7 @@ localStorage.removeItem(
 );
 
 window.location.href =
-"dashboard.html";
+"intro.html";
 }
 else{
 

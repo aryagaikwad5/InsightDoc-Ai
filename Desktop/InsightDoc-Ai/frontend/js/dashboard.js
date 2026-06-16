@@ -1,3 +1,12 @@
+
+if(!localStorage.getItem("user")){
+
+    window.location.replace(
+        "index.html"
+    );
+
+}
+
 const filename =
 localStorage.getItem("filename");
 
@@ -367,7 +376,9 @@ function logout(){
         "resumeSession"
     );
 
-    window.location.href =
-    "index.html";
+    window.location.replace(
+        "index.html"
+    );
 
 }
+

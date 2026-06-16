@@ -93,7 +93,30 @@
 
 </div>
 
+<script>
+
+window.addEventListener(
+    "pageshow",
+    function(){
+
+        if(
+            !localStorage.getItem("user")
+        ){
+
+            window.location.replace(
+                "index.html"
+            );
+
+        }
+
+    }
+);
+
+</script>
+
 <script src="js/quiz.js"></script>
+
+
 
 </body>
 

@@ -5,48 +5,65 @@ let currentQuestion = 0;
 let score = 0;
 
 const rawQuiz =
-localStorage.getItem("quiz");
+localStorage.getItem(
+    "quiz"
+);
 
-
-if (rawQuiz) {
+if(rawQuiz){
 
     const blocks =
     rawQuiz.match(
-        /Q\d+\.[\s\S]*?(?=Q\d+\.|$)/g
+        /\*\*Question\s+\d+\*\*[\s\S]*?(?=\n\*\*Question\s+\d+\*\*|$)/g
     ) || [];
 
     blocks.forEach(block => {
 
-        const lines =
-        block.split("\n")
-        .filter(
-            line => line.trim()
+        const questionMatch =
+        block.match(
+            /\*\*Question\s+\d+\*\*\s*([\s\S]*?)(?=\n\s*Option A:)/
         );
 
-        const question =
-        lines[0];
+        const options = [];
 
-        const options =
-        lines.filter(
-            line =>
-                line.match(/^[A-D][.)]/)
-        );
+        const optionMatches =
+        block.match(
+            /^\s*Option [A-D]:.*$/gm
+        ) || [];
 
-        const correct =
-        lines.find(
-            line =>
-                line.includes(
-                    "Correct Answer:"
+        optionMatches.forEach(option => {
+
+            if(
+                !option.includes(
+                    "Correct Answer"
                 )
+            ){
+
+                options.push(
+                    option.trim()
+                );
+
+            }
+
+        });
+
+        const correctMatch =
+        block.match(
+            /Correct Answer:\s*Option\s*([A-D])/i
         );
 
         questions.push({
 
-            question,
+            question:
+            questionMatch
+            ? questionMatch[1].trim()
+            : "Question",
 
             options,
 
-            correct
+            correct:
+            correctMatch
+            ? correctMatch[1]
+            : ""
 
         });
 
@@ -124,22 +141,19 @@ function selectAnswer(button, answer) {
     });
 
     const selected =
-    answer.charAt(0);
-
-    const correctMatch =
-    q.correct.match(
-        /Correct Answer:\s*([A-D])/
-    );
+    answer.match(
+        /Option\s([A-D])/i
+    )?.[1] || "";
 
     const correctLetter =
-    correctMatch
-    ? correctMatch[1]
-    : "";
+    q.correct;
 
     optionButtons.forEach(btn => {
 
         const btnLetter =
-        btn.innerText.trim().charAt(0);
+        btn.innerText.match(
+            /Option\s([A-D])/i
+        )?.[1] || "";
 
         if(btnLetter === correctLetter){
 
@@ -156,11 +170,6 @@ function selectAnswer(button, answer) {
 
         score++;
 
-        button.style.background =
-        "#22c55e";
-
-        button.style.color =
-        "white";
     }
 
     else{
@@ -172,11 +181,11 @@ function selectAnswer(button, answer) {
         "white";
     }
 
-    document.getElementById(
-        "scoreText"
-    ).innerText =
-    "Score: " + score;
-}
+        document.getElementById(
+            "scoreText"
+        ).innerText =
+        "Score: " + score;
+    }
 
 
 function nextQuestion() {
@@ -188,3 +197,11 @@ function nextQuestion() {
 }
 
 renderQuestion();
+
+if(!localStorage.getItem("user")){
+
+    window.location.replace(
+        "index.html"
+    );
+
+}

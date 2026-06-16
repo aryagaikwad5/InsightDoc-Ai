@@ -10,50 +10,53 @@ localStorage.getItem(
     "flashcards"
 );
 
-
 if(rawData){
 
-    const questions =
+    /*
+    New Format:
+    1. **Question:** ....
+    **Answer:** ....
+    */
+
+    const matches =
     rawData.match(
-        /\*\*Q\d+\..*?\*\*/g
+        /\d+\.\s*\*\*Question:\*\*[\s\S]*?\*\*Answer:\*\*[\s\S]*?(?=\n\d+\.|\s*$)/g
     );
 
-    const answers =
-    rawData.match(
-        /Answer:\s*.*/g
-    );
+    if(matches){
 
-    if(
-        questions &&
-        answers
-    ){
+        matches.forEach(block => {
 
-        for(
-            let i = 0;
-            i < Math.min(
-                questions.length,
-                answers.length
+            const questionMatch =
+            block.match(
+                /\*\*Question:\*\*\s*(.*)/i
             );
-            i++
-        ){
 
-            flashcards.push({
+            const answerMatch =
+            block.match(
+                /\*\*Answer:\*\*\s*(.*)/i
+            );
 
-                question:
-                questions[i]
-                .replace(/\*\*/g,""),
+            if(
+                questionMatch &&
+                answerMatch
+            ){
 
-                answer:
-                answers[i]
-                .replace(
-                    "Answer:",
-                    ""
-                )
-                .trim()
+                flashcards.push({
 
-            });
+                    question:
+                    questionMatch[1]
+                    .trim(),
 
-        }
+                    answer:
+                    answerMatch[1]
+                    .trim()
+
+                });
+
+            }
+
+        });
 
     }
 
@@ -179,3 +182,11 @@ function previousCard(){
 
 
 renderCard();
+
+if(!localStorage.getItem("user")){
+
+    window.location.replace(
+        "index.html"
+    );
+
+}

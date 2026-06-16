@@ -141,3 +141,84 @@ body{
 
     background:#2563eb;
 }
+
+.document-info{
+
+    margin-top:10px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#64748b;
+}
+
+.prompt-chips{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    padding:20px 25px 0;
+}
+
+.prompt-chips button{
+
+    border:none;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    padding:10px 14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+}
+
+.prompt-chips button:hover{
+
+    background:#dbeafe;
+}
+
+.chat-actions{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:0 25px 15px;
+}
+
+.dashboard-btn,
+.clear-btn{
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+.dashboard-btn{
+
+    background:#3b82f6;
+
+    color:white;
+}
+
+.clear-btn{
+
+    background:#ef4444;
+
+    color:white;
+}

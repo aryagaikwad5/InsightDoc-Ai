@@ -217,7 +217,32 @@
 
 </div>
 
+<script>
+
+window.addEventListener(
+    "pageshow",
+    function(){
+
+        if(
+            !localStorage.getItem("user")
+        ){
+
+            window.location.replace(
+                "index.html"
+            );
+
+        }
+
+    }
+);
+
+</script>
+
 <script src="js/dashboard.js"></script>
+
+
+
+</script>
 
 </body>
 

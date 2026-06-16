@@ -1,6 +1,25 @@
 const API_URL =
 "http://127.0.0.1:5000/api/document/chat";
 
+const filename =
+localStorage.getItem(
+    "filename"
+);
+
+if(filename){
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        () => {
+
+            document.getElementById(
+                "documentName"
+            ).innerText =
+            filename;
+
+        }
+    );
+}
 
 async function sendMessage(){
 
@@ -32,7 +51,7 @@ async function sendMessage(){
     chatBox.innerHTML +=
     `
     <div class="bot-message" id="thinking">
-        Thinking...
+        🤖 InsightDoc is thinking...
     </div>
     `;
 
@@ -103,5 +122,57 @@ async function sendMessage(){
 
     chatBox.scrollTop =
     chatBox.scrollHeight;
+
+}
+
+function clearChat(){
+
+    document.getElementById(
+        "chatBox"
+    ).innerHTML =
+    `
+    <div class="bot-message">
+        Hello! Ask me anything about your uploaded document.
+    </div>
+    `;
+}
+
+
+function usePrompt(prompt){
+
+    document.getElementById(
+        "userInput"
+    ).value =
+    prompt;
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        document.getElementById(
+            "userInput"
+        ).addEventListener(
+            "keypress",
+            function(e){
+
+                if(e.key === "Enter"){
+
+                    sendMessage();
+
+                }
+
+            }
+        );
+
+    }
+);
+
+if(!localStorage.getItem("user")){
+
+    window.location.replace(
+        "index.html"
+    );
 
 }
