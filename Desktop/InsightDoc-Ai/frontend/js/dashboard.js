@@ -1,25 +1,23 @@
 const filename =
-localStorage.getItem(
-    "filename"
-);
+localStorage.getItem("filename");
 
 const documentText =
-localStorage.getItem(
-    "documentText"
-);
+localStorage.getItem("documentText");
+
+const resumeSession =
+localStorage.getItem("resumeSession");
 
 
-if(filename){
+if (
+    resumeSession === "true" &&
+    filename &&
+    documentText
+) {
 
     document.getElementById(
         "filename"
     ).innerText =
     "Filename: " + filename;
-
-}
-
-
-if(documentText){
 
     const words =
     documentText
@@ -33,14 +31,52 @@ if(documentText){
     "Word Count: " + words;
 
 }
+else {
+
+    document.getElementById(
+        "filename"
+    ).innerText =
+    "No active study session.";
+
+    document.getElementById(
+        "wordCount"
+    ).innerText =
+    "Upload or continue a PDF to begin.";
+
+}
 
 
 /* Upload History */
 
+const user =
+JSON.parse(
+    localStorage.getItem(
+        "user"
+    )
+);
+
+if (
+    user &&
+    user.username
+) {
+
+    document.getElementById(
+        "welcomeUser"
+    ).innerText =
+    "Welcome back, " +
+    user.username +
+    " 👋";
+
+}
+
+const historyKey =
+"documentHistory_" +
+user.username;
+
 const history =
 JSON.parse(
     localStorage.getItem(
-        "documentHistory"
+        historyKey
     )
 ) || [];
 
@@ -67,9 +103,7 @@ else{
             html += `
             <div
             class="history-item"
-            onclick="loadDocument(${index})"
             style="
-                cursor:pointer;
                 padding:10px;
                 margin:10px 0;
                 border:1px solid #ccc;
@@ -77,11 +111,34 @@ else{
             ">
 
                 📄 ${doc.filename}
+
                 <br>
 
                 <small>
                     ${doc.uploadedAt}
                 </small>
+
+                <br><br>
+
+                <div class="history-buttons">
+
+                    <button
+                        class="continue-btn"
+                        onclick="loadDocument(${index})">
+
+                        Continue
+
+                    </button>
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteDocument(${index})">
+
+                        Delete
+
+                    </button>
+
+                </div>
 
             </div>
             `;
@@ -125,11 +182,192 @@ function loadDocument(index){
         doc.documentText
     );
 
-    alert(
-        "Loaded: " +
-        doc.filename
+    localStorage.setItem(
+        "resumeSession",
+        "true"
     );
 
+    window.location.href =
+    "upload.html";
+
+}
+
+const actionCards =
+document.querySelectorAll(
+    ".tool-card"
+);
+
+if (
+    resumeSession !== "true"
+) {
+
+    actionCards.forEach(card => {
+
+        card.style.opacity =
+        "0.5";
+
+        card.style.pointerEvents =
+        "none";
+
+    });
+
+}
+
+function deleteDocument(index){
+
+    if(
+        !confirm(
+            "Delete this study session?"
+        )
+    ){
+        return;
+    }
+
+    const doc =
+    history[index];
+
+    history.splice(
+        index,
+        1
+    );
+
+    localStorage.setItem(
+
+        historyKey,
+
+        JSON.stringify(
+            history
+        )
+
+    );
+
+    if(
+
+        localStorage.getItem(
+            "filename"
+        ) === doc.filename
+
+    ){
+
+        localStorage.removeItem(
+            "filename"
+        );
+
+        localStorage.removeItem(
+            "summary"
+        );
+
+        localStorage.removeItem(
+            "flashcards"
+        );
+
+        localStorage.removeItem(
+            "quiz"
+        );
+
+        localStorage.removeItem(
+            "documentText"
+        );
+
+        localStorage.removeItem(
+            "resumeSession"
+        );
+
+    }
+
     location.reload();
+
+}
+
+if(user){
+
+    document.getElementById(
+        "dropdownUsername"
+    ).innerText =
+    "👤 " + user.username;
+
+    document.getElementById(
+        "avatarInitial"
+    ).innerText =
+    user.username
+    .charAt(0)
+    .toUpperCase();
+
+}
+
+
+function toggleDropdown(){
+
+    document.getElementById(
+        "dropdownMenu"
+    ).classList.toggle(
+        "show"
+    );
+
+}
+
+
+window.onclick = function(event){
+
+    if(
+
+        !event.target.closest(
+            ".profile-dropdown"
+        )
+
+    ){
+
+        const menu =
+        document.getElementById(
+            "dropdownMenu"
+        );
+
+        if(menu){
+
+            menu.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+
+}
+
+
+function logout(){
+
+    localStorage.removeItem(
+        "user"
+    );
+
+    /* Clear active session */
+
+    localStorage.removeItem(
+        "filename"
+    );
+
+    localStorage.removeItem(
+        "summary"
+    );
+
+    localStorage.removeItem(
+        "flashcards"
+    );
+
+    localStorage.removeItem(
+        "quiz"
+    );
+
+    localStorage.removeItem(
+        "documentText"
+    );
+
+    localStorage.removeItem(
+        "resumeSession"
+    );
+
+    window.location.href =
+    "index.html";
 
 }

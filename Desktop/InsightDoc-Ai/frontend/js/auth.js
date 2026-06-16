@@ -102,8 +102,34 @@ await res.json();
 if(data.success){
 
 localStorage.setItem(
-"user",
-JSON.stringify(data.user)
+    "user",
+    JSON.stringify(data.user)
+);
+
+/* Clear previous active session */
+
+localStorage.removeItem(
+    "filename"
+);
+
+localStorage.removeItem(
+    "summary"
+);
+
+localStorage.removeItem(
+    "flashcards"
+);
+
+localStorage.removeItem(
+    "quiz"
+);
+
+localStorage.removeItem(
+    "documentText"
+);
+
+localStorage.removeItem(
+    "resumeSession"
 );
 
 window.location.href =

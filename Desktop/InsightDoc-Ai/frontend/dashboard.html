@@ -19,68 +19,202 @@
 
 <div class="container">
 
-    <h1>
-        📚 InsightDoc Dashboard
-    </h1>
+    <div class="main">
 
-    <div class="card">
+        <!-- Hero Section -->
 
-        <h2>
-            📄 Uploaded Document
+        <div class="hero-card">
+
+            <div class="hero-left">
+
+                <h1>
+                    📚 InsightDoc AI
+                </h1>
+
+                <p class="hero-text">
+                    Learn Smarter with AI
+                </p>
+
+                <p
+                    class="welcome-text"
+                    id="welcomeUser">
+
+                    Welcome back 👋
+
+                </p>
+
+            </div>
+
+
+            <div class="hero-right">
+
+                <div
+                    class="profile-dropdown">
+
+                    <button
+                        class="profile-btn"
+                        onclick="toggleDropdown()">
+
+                        <div
+                            class="avatar"
+                            id="avatarInitial">
+
+                            A
+
+                        </div>
+
+                    </button>
+                    
+
+                    <div
+                        class="dropdown-menu"
+                        id="dropdownMenu">
+
+                        <button
+                            class="username-item"
+                            id="dropdownUsername">
+
+                            👤 User
+
+                        </button>
+
+                        <button
+                            onclick="logout()">
+
+                            🚪 Logout
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="upload-main-btn"
+                    onclick="location.href='upload.html'">
+
+                    📤 Upload New Document
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Current Document -->
+
+        <div class="card">
+
+            <h2>
+                📄 Current Document
+            </h2>
+
+            <p
+                id="filename"
+                class="filename">
+
+                Filename: -
+
+            </p>
+
+            <p
+                id="wordCount"
+                class="wordcount">
+
+                Word Count: -
+
+            </p>
+
+        </div>
+
+
+        <!-- Quick Actions -->
+
+        <h2 class="section-title">
+
+            ⚡ Quick Actions
+
         </h2>
 
-        <p id="filename">
+        <div class="tools">
 
-            Filename: -
+            <div
+                class="tool-card"
+                onclick="location.href='flashcards.html'">
 
-        </p>
+                <h3>
+                    🃏 Flashcards
+                </h3>
 
-        <p id="wordCount">
+                <p>
 
-            Word Count: -
+                    Review concepts quickly
 
-        </p>
+                </p>
 
-    </div>
+            </div>
 
-    <div class="card">
+            <div
+                class="tool-card"
+                onclick="location.href='quiz.html'">
 
-        <h2>
-            Quick Actions
-        </h2>
+                <h3>
+                    🧠 Quiz
+                </h3>
 
-        <button onclick="location.href='upload.html'">
-            Upload
-        </button>
+                <p>
 
-        <button onclick="location.href='flashcards.html'">
-            Flashcards
-        </button>
+                    Test your knowledge
 
-        <button onclick="location.href='quiz.html'">
-            Quiz
-        </button>
+                </p>
 
-        <button onclick="location.href='chat.html'">
-            Chat
-        </button>
+            </div>
 
-    </div>
+            <div
+                class="tool-card"
+                onclick="location.href='chat.html'">
+
+                <h3>
+                    💬 AI Chat
+                </h3>
+
+                <p>
+
+                    Ask questions instantly
+
+                </p>
+
+            </div>
+
+            
+
+        </div>
 
 
-    <div class="card">
+        <!-- Recent Documents -->
 
-        <h2>
-            📚 Recent Documents
-        </h2>
+        <div class="activity">
 
-        <div id="historyList">
+            <h2>
 
-            No documents found.
+                📚 Recent Study Sessions
+
+            </h2>
+
+            <br>
+
+            <div id="historyList">
+
+                No documents found.
+
+            </div>
 
         </div>
 
     </div>
+
 </div>
 
 <script src="js/dashboard.js"></script>

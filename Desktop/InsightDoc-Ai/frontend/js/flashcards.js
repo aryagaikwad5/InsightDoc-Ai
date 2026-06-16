@@ -20,7 +20,7 @@ if(rawData){
 
     const answers =
     rawData.match(
-        /- Answer: .*/g
+        /Answer:\s*.*/g
     );
 
     if(
@@ -46,9 +46,10 @@ if(rawData){
                 answer:
                 answers[i]
                 .replace(
-                    "- Answer: ",
+                    "Answer:",
                     ""
                 )
+                .trim()
 
             });
 
@@ -66,6 +67,11 @@ function renderCard(){
         "flashcard"
     );
 
+    const counter =
+    document.getElementById(
+        "cardCounter"
+    );
+
     if(
         flashcards.length === 0
     ){
@@ -73,24 +79,34 @@ function renderCard(){
         card.innerHTML =
         "No Flashcards Found";
 
+        counter.innerText =
+        "Card 0 / 0";
+
         return;
     }
+
+    counter.innerText =
+    `Card ${currentIndex + 1} / ${flashcards.length}`;
 
     if(showingAnswer){
 
         card.innerHTML =
-        flashcards[
-            currentIndex
-        ].answer;
+        `
+        <h2>✅ Answer</h2>
+        <br>
+        ${flashcards[currentIndex].answer}
+        `;
 
     }
 
     else{
 
         card.innerHTML =
-        flashcards[
-            currentIndex
-        ].question;
+        `
+        <h2>❓ Question</h2>
+        <br>
+        ${flashcards[currentIndex].question}
+        `;
 
     }
 
@@ -99,10 +115,27 @@ function renderCard(){
 
 function flipCard(){
 
-    showingAnswer =
-    !showingAnswer;
+    const card =
+    document.getElementById(
+        "flashcard"
+    );
 
-    renderCard();
+    card.classList.add(
+        "flip"
+    );
+
+    setTimeout(() => {
+
+        showingAnswer =
+        !showingAnswer;
+
+        renderCard();
+
+        card.classList.remove(
+            "flip"
+        );
+
+    }, 150);
 
 }
 
@@ -142,6 +175,7 @@ function previousCard(){
     }
 
 }
+
 
 
 renderCard();

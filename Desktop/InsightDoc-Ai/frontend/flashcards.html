@@ -19,12 +19,20 @@
 
 <div class="container">
 
-    <h1>
-        📚 AI Flashcards
-    </h1>
+    <div class="hero">
 
-    <div
-        id="flashcardContainer">
+        <h1>
+            📚 AI Flashcards
+        </h1>
+
+        <p>
+            Learn faster using AI-generated flashcards from your study material.
+        </p>
+
+    </div>
+
+
+    <div class="card-section">
 
         <div
             class="card"
@@ -34,30 +42,63 @@
 
         </div>
 
+        <div
+            id="cardCounter"
+            class="card-counter">
+
+            Card 0 / 0
+
+        </div>
+
     </div>
 
-    <br>
 
-    <button
-        onclick="previousCard()">
+    <div class="controls">
 
-        Previous
+        <button
+            class="secondary-btn"
+            onclick="previousCard()">
 
-    </button>
+            ⬅ Previous
 
-    <button
-        onclick="flipCard()">
+        </button>
 
-        Flip
+        <button
+            class="primary-btn"
+            onclick="flipCard()">
 
-    </button>
+            🔄 Flip Card
 
-    <button
-        onclick="nextCard()">
+        </button>
 
-        Next
+        <button
+            class="secondary-btn"
+            onclick="nextCard()">
 
-    </button>
+            Next ➡
+
+        </button>
+
+    </div>
+
+
+    <div class="dashboard-box">
+
+        <p>
+
+            Need other study tools?
+
+        </p>
+
+        <button
+            class="dashboard-btn"
+            onclick="window.location.href='dashboard.html'">
+
+            🏠 Back to Dashboard
+
+        </button>
+
+    </div>
 
 </div>
 

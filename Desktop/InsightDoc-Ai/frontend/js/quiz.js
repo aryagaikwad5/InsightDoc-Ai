@@ -29,10 +29,7 @@ if (rawQuiz) {
         const options =
         lines.filter(
             line =>
-                line.startsWith("A)") ||
-                line.startsWith("B)") ||
-                line.startsWith("C)") ||
-                line.startsWith("D)")
+                line.match(/^[A-D][.)]/)
         );
 
         const correct =
@@ -92,7 +89,8 @@ function renderQuestion() {
 
         html += `
         <button
-        onclick="selectAnswer('${option.replace(/'/g, "")}')">
+            class="option-btn"
+            onclick="selectAnswer(this,'${option.replace(/'/g,"")}')">
 
             ${option}
 
@@ -111,27 +109,73 @@ function renderQuestion() {
 }
 
 
-function selectAnswer(answer) {
+function selectAnswer(button, answer) {
 
     const q =
     questions[currentQuestion];
 
-    if (
-        q.correct &&
-        q.correct.includes(
-            answer.charAt(0)
-        )
-    ) {
+    const optionButtons =
+    document.querySelectorAll(".option-btn");
+
+    optionButtons.forEach(btn => {
+
+        btn.disabled = true;
+
+    });
+
+    const selected =
+    answer.charAt(0);
+
+    const correctMatch =
+    q.correct.match(
+        /Correct Answer:\s*([A-D])/
+    );
+
+    const correctLetter =
+    correctMatch
+    ? correctMatch[1]
+    : "";
+
+    optionButtons.forEach(btn => {
+
+        const btnLetter =
+        btn.innerText.trim().charAt(0);
+
+        if(btnLetter === correctLetter){
+
+            btn.style.background =
+            "#22c55e";
+
+            btn.style.color =
+            "white";
+        }
+
+    });
+
+    if(selected === correctLetter){
 
         score++;
 
+        button.style.background =
+        "#22c55e";
+
+        button.style.color =
+        "white";
+    }
+
+    else{
+
+        button.style.background =
+        "#ef4444";
+
+        button.style.color =
+        "white";
     }
 
     document.getElementById(
         "scoreText"
     ).innerText =
     "Score: " + score;
-
 }
 
 
@@ -142,6 +186,5 @@ function nextQuestion() {
     renderQuestion();
 
 }
-
 
 renderQuestion();

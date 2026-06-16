@@ -11,7 +11,7 @@
 
     <link
         rel="stylesheet"
-        href="css/flashcards.css">
+        href="css/quiz.css">
 
 </head>
 
@@ -19,38 +19,77 @@
 
 <div class="container">
 
-    <h1>
-        🧠 AI Quiz
-    </h1>
+    <div class="hero">
 
-    <div
-        class="card"
-        id="questionCard">
+        <h1>
+            🧠 AI Quiz
+        </h1>
 
-        No Quiz Found
-
-    </div>
-
-    <br>
-
-    <div id="optionsContainer">
+        <p>
+            Test your understanding with AI-generated questions.
+        </p>
 
     </div>
 
-    <br>
 
-    <button
-        onclick="nextQuestion()">
+    <div class="quiz-card">
 
-        Next Question
+        <div
+            class="question-card"
+            id="questionCard">
 
-    </button>
+            No Quiz Found
 
-    <h2 id="scoreText">
+        </div>
 
-        Score: 0
 
-    </h2>
+        <div
+            id="optionsContainer"
+            class="options-container">
+
+        </div>
+
+
+        <button
+            class="next-btn"
+            onclick="nextQuestion()">
+
+            Next Question →
+
+        </button>
+
+
+        <div
+            class="score-box">
+
+            <h2 id="scoreText">
+
+                Score: 0
+
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="dashboard-box">
+
+        <p>
+
+            Need other study tools?
+
+        </p>
+
+        <button
+            class="dashboard-btn"
+            onclick="window.location.href='dashboard.html'">
+
+            🏠 Back to Dashboard
+
+        </button>
+
+    </div>
 
 </div>
 
