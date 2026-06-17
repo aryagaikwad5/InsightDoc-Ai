@@ -13,16 +13,41 @@ def generate_quiz(text):
     text = text[:6000]
 
     prompt = f"""
-    Create 10 MCQ questions.
+    Generate exactly 10 multiple choice questions.
 
-    Format:
+    STRICT FORMAT:
 
-    Question:
-    Option A:
-    Option B:
-    Option C:
-    Option D:
-    Correct Answer:
+    Q1. Question text
+
+    A. Option A
+
+    B. Option B
+
+    C. Option C
+
+    D. Option D
+
+    Correct Answer: A
+
+    Q2. Question text
+
+    A. Option A
+
+    B. Option B
+
+    C. Option C
+
+    D. Option D
+
+    Correct Answer: B
+
+    Rules:
+    - Always start with Q1, Q2, Q3...
+    - Always use A. B. C. D.
+    - Correct Answer must contain ONLY the option letter.
+    - No markdown.
+    - No explanations.
+    - No extra text before or after questions.
 
     Content:
 

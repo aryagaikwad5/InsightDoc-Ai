@@ -13,12 +13,28 @@ def generate_flashcards(text):
     text = text[:6000]
 
     prompt = f"""
-    Create 10 study flashcards.
+    Generate exactly 10 flashcards.
 
-    Return format:
+    STRICT FORMAT:
 
-    Question: ...
-    Answer: ...
+    Q1. Question text
+
+    Answer: answer text
+
+    Q2. Question text
+
+    Answer: answer text
+
+    Q3. Question text
+
+    Answer: answer text
+
+    Rules:
+    - Always use Q1, Q2, Q3...
+    - Always use Answer:
+    - No markdown.
+    - No bullets.
+    - No extra text before or after flashcards.
 
     Content:
 
