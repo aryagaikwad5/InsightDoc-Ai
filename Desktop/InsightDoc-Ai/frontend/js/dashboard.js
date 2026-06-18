@@ -382,3 +382,33 @@ function logout(){
 
 }
 
+function startNewDocument(){
+
+    localStorage.removeItem(
+        "filename"
+    );
+
+    localStorage.removeItem(
+        "summary"
+    );
+
+    localStorage.removeItem(
+        "flashcards"
+    );
+
+    localStorage.removeItem(
+        "quiz"
+    );
+
+    localStorage.removeItem(
+        "documentText"
+    );
+
+    localStorage.removeItem(
+        "resumeSession"
+    );
+
+    window.location.href =
+    "upload.html";
+
+}

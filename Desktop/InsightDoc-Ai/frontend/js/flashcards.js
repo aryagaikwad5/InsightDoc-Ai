@@ -12,56 +12,45 @@ localStorage.getItem(
 
 if(rawData){
 
-    /*
-    New Format:
-    1. **Question:** ....
-    **Answer:** ....
-    */
-
-    const matches =
+    const blocks =
     rawData.match(
-        /\d+\.\s*\*\*Question:\*\*[\s\S]*?\*\*Answer:\*\*[\s\S]*?(?=\n\d+\.|\s*$)/g
-    );
+        /Q\d+\.[\s\S]*?(?=Q\d+\.|$)/g
+    ) || [];
 
-    if(matches){
+    blocks.forEach(block => {
 
-        matches.forEach(block => {
+        const questionMatch =
+        block.match(
+            /(Q\d+\..*)/
+        );
 
-            const questionMatch =
-            block.match(
-                /\*\*Question:\*\*\s*(.*)/i
-            );
+        const answerMatch =
+        block.match(
+            /Answer:\s*([\s\S]*)/
+        );
 
-            const answerMatch =
-            block.match(
-                /\*\*Answer:\*\*\s*(.*)/i
-            );
+        if(
+            questionMatch &&
+            answerMatch
+        ){
 
-            if(
-                questionMatch &&
-                answerMatch
-            ){
+            flashcards.push({
 
-                flashcards.push({
+                question:
+                questionMatch[1]
+                .trim(),
 
-                    question:
-                    questionMatch[1]
-                    .trim(),
+                answer:
+                answerMatch[1]
+                .trim()
 
-                    answer:
-                    answerMatch[1]
-                    .trim()
+            });
 
-                });
+        }
 
-            }
-
-        });
-
-    }
+    });
 
 }
-
 
 function renderCard(){
 

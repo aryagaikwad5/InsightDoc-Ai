@@ -13,61 +13,58 @@ if(rawQuiz){
 
     const blocks =
     rawQuiz.match(
-        /\*\*Question\s+\d+\*\*[\s\S]*?(?=\n\*\*Question\s+\d+\*\*|$)/g
+        /Q\d+\.[\s\S]*?(?=Q\d+\.|$)/g
     ) || [];
 
     blocks.forEach(block => {
 
-        const questionMatch =
-        block.match(
-            /\*\*Question\s+\d+\*\*\s*([\s\S]*?)(?=\n\s*Option A:)/
+        const lines =
+        block
+        .split("\n")
+        .map(line => line.trim())
+        .filter(line => line);
+
+        const question =
+        lines[0];
+
+        const options =
+        lines.filter(
+            line =>
+            /^[A-D]\./.test(line)
         );
 
-        const options = [];
-
-        const optionMatches =
-        block.match(
-            /^\s*Option [A-D]:.*$/gm
-        ) || [];
-
-        optionMatches.forEach(option => {
-
-            if(
-                !option.includes(
-                    "Correct Answer"
-                )
-            ){
-
-                options.push(
-                    option.trim()
-                );
-
-            }
-
-        });
-
-        const correctMatch =
-        block.match(
-            /Correct Answer:\s*Option\s*([A-D])/i
+        const correctLine =
+        lines.find(
+            line =>
+            line.startsWith(
+                "Correct Answer:"
+            )
         );
+
+        const correct =
+        correctLine
+        ?
+        correctLine
+        .replace(
+            "Correct Answer:",
+            ""
+        )
+        .trim()
+        :
+        "";
 
         questions.push({
 
-            question:
-            questionMatch
-            ? questionMatch[1].trim()
-            : "Question",
+            question,
 
             options,
 
-            correct:
-            correctMatch
-            ? correctMatch[1]
-            : ""
+            correct
 
         });
 
     });
+
 
 }
 
@@ -141,19 +138,15 @@ function selectAnswer(button, answer) {
     });
 
     const selected =
-    answer.match(
-        /Option\s([A-D])/i
-    )?.[1] || "";
+    answer.charAt(0);
 
     const correctLetter =
-    q.correct;
+    q.correct.charAt(0);
 
     optionButtons.forEach(btn => {
 
         const btnLetter =
-        btn.innerText.match(
-            /Option\s([A-D])/i
-        )?.[1] || "";
+        btn.innerText.trim().charAt(0);
 
         if(btnLetter === correctLetter){
 

@@ -14,7 +14,21 @@ if(!currentUser){
     "index.html";
 }
 
+
+
 async function uploadPDF() {
+
+    document.getElementById(
+        "summaryCard"
+    ).style.display = "none";
+
+    document.getElementById(
+        "previewCard"
+    ).style.display = "none";
+
+    document.getElementById(
+        "currentSessionCard"
+    ).style.display = "none";
 
     const fileInput =
     document.getElementById("pdfFile");
@@ -56,6 +70,11 @@ async function uploadPDF() {
                 method: "POST",
                 body: formData
             }
+        );
+
+        console.log(
+            "STATUS:",
+            response.status
         );
 
         const data =
@@ -284,10 +303,7 @@ async function uploadPDF() {
 
             /* Quick Actions */
 
-            document.getElementById(
-                "quickActionsCard"
-            ).style.display =
-            "block";
+            
 
 
             document.getElementById(
@@ -311,12 +327,14 @@ async function uploadPDF() {
     catch (error) {
 
         console.error(
+            "UPLOAD ERROR:",
             error
         );
 
         alert(
             "Upload Failed"
         );
+
     }
 }
 
@@ -405,10 +423,7 @@ window.addEventListener(
 
             /* Quick Actions */
 
-            document.getElementById(
-                "quickActionsCard"
-            ).style.display =
-            "block";
+            
 
         }
 
