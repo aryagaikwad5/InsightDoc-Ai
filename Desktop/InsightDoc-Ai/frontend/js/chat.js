@@ -1,5 +1,5 @@
 const API_URL =
-"http://127.0.0.1:5000/api/document/chat";
+"https://YOUR-BACKEND.onrender.com/api/document/chat";
 
 const filename =
 localStorage.getItem(

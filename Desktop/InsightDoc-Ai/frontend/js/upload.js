@@ -1,5 +1,5 @@
 const API_URL =
-"http://127.0.0.1:5000/api/document/upload";
+"https://YOUR-BACKEND.onrender.com/api/document/upload";
 
 const currentUser =
 JSON.parse(

@@ -1,5 +1,5 @@
 const API_URL =
-"http://127.0.0.1:5000/api/auth";
+"https://YOUR-BACKEND.onrender.com/api/auth";
 
 
 // REGISTER
