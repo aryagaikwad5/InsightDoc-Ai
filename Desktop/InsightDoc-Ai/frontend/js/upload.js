@@ -1,5 +1,5 @@
 const API_URL =
-"https://YOUR-BACKEND.onrender.com/api/document/upload";
+"https://insightdoc-ai-tn28.onrender.com/api/document/upload";
 
 const currentUser =
 JSON.parse(

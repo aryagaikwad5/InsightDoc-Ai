@@ -1,5 +1,5 @@
 const API_URL =
-"https://YOUR-BACKEND.onrender.com/api/auth";
+"https://insightdoc-ai-tn28.onrender.com/api/auth";
 
 
 // REGISTER

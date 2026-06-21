@@ -1,5 +1,5 @@
 const API_URL =
-"https://YOUR-BACKEND.onrender.com/api/document/chat";
+"https://insightdoc-ai-tn28.onrender.com/api/document/chat";
 
 const filename =
 localStorage.getItem(
