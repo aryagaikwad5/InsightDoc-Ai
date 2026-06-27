@@ -8,6 +8,8 @@ from werkzeug.security import check_password_hash
 from database import db
 from models.user import User
 
+import re
+
 auth_bp = Blueprint(
     "auth",
     __name__
@@ -26,8 +28,20 @@ def register():
 
         return jsonify({
             "success": False,
-            "message": "All fields required"
+            "message": "All fields are required."
         }), 400
+
+
+    # Password Validation
+    password_regex = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&^#])[A-Za-z\d@$!%*?&^#]{8,}$"
+
+    if not re.match(password_regex, password):
+
+        return jsonify({
+            "success": False,
+            "message": "Password must be at least 8 characters long and include an uppercase letter, lowercase letter, number and special character."
+        }), 400
+
 
     existing_user = User.query.filter_by(
         username=username
@@ -37,8 +51,9 @@ def register():
 
         return jsonify({
             "success": False,
-            "message": "Username already exists"
+            "message": "Username already exists."
         }), 400
+
 
     hashed_password = generate_password_hash(
         password
@@ -54,7 +69,7 @@ def register():
 
     return jsonify({
         "success": True,
-        "message": "Registration successful"
+        "message": "Registration successful."
     })
 
 
@@ -74,7 +89,7 @@ def login():
 
         return jsonify({
             "success": False,
-            "message": "User not found"
+            "message": "User not found."
         }), 404
 
     if not check_password_hash(
@@ -84,11 +99,11 @@ def login():
 
         return jsonify({
             "success": False,
-            "message": "Invalid password"
+            "message": "Invalid password."
         }), 401
 
     return jsonify({
         "success": True,
-        "message": "Login successful",
+        "message": "Login successful.",
         "user": user.to_dict()
     })

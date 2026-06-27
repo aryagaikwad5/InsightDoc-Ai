@@ -25,6 +25,17 @@ document.getElementById(
 "regPassword"
 ).value;
 
+const passwordRegex =
+/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&^#])[A-Za-z\d@$!%*?&^#]{8,}$/;
+
+if(!passwordRegex.test(password)){
+
+    document.getElementById("message").innerText =
+    "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character.";
+
+    return;
+}
+
 const res = await fetch(
 `${API_URL}/register`,
 {
@@ -145,4 +156,25 @@ data.message;
 }
 
 });
+}
+
+function togglePassword(inputId, button){
+
+    const input =
+    document.getElementById(inputId);
+
+    if(input.type === "password"){
+
+        input.type = "text";
+        button.innerText = "Hide";
+
+    }
+
+    else{
+
+        input.type = "password";
+        button.innerText = "Show";
+
+    }
+
 }
