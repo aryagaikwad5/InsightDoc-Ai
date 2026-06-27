@@ -17,26 +17,46 @@ body{
     text-align:center;
 }
 
-h1{
+.hero h1{
+
     font-size:36px;
+
     font-weight:700;
-    margin-bottom:40px;
+
+    margin-bottom:20px;
+
     color:#111827;
+
 }
 
 .card{
+
     background:white;
+
     min-height:300px;
+
     padding:50px;
+
     border-radius:24px;
+
     display:flex;
+
     justify-content:center;
+
     align-items:center;
+
+    text-align:center;
+
     font-size:24px;
+
     line-height:1.8;
+
     font-weight:600;
+
     box-shadow:0 10px 30px rgba(0,0,0,0.08);
-    transition:0.3s;
+
+    transition:transform .3s;
+
 }
 
 .card:hover{
@@ -65,49 +85,15 @@ button:hover{
     transform:translateY(-2px);
 }
 
-.option-btn{
 
-    width:100%;
 
-    max-width:600px;
 
-    padding:15px;
-
-    margin:8px 0;
-
-    font-size:16px;
-
-    font-weight:600;
-
-    border:none;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    transition:0.3s;
-}
-
-.option-btn:hover{
-
-    transform:translateY(-2px);
-}
-
-.option-btn:disabled{
-
-    cursor:not-allowed;
-}
-
-.card-wrapper{
-
-    perspective:1000px;
-}
 
 .flip{
 
     transform:rotateY(180deg);
 
-    transition:0.3s;
+   
 }
 
 .card-counter{
@@ -121,9 +107,20 @@ button:hover{
     color:#64748b;
 }
 
-.card strong{
+.card h2{
 
-    color:#1e40af;
+    color:#2563eb;
 
-    font-size:20px;
+    margin-bottom:15px;
+
+}
+
+.hero p{
+
+    color:#64748b;
+
+    font-size:17px;
+
+    margin-bottom:40px;
+
 }
